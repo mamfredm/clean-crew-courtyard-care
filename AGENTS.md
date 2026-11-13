@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Company contact data (phone, email, area) lives only in `src/config/site.ts`; the WhatsApp button and contact blocks render from it, so never hardcode contact details elsewhere.
+- Gallery and before/after images are listed in `src/config/gallery.ts` so the owner can swap photos in one place.
+- Services content lives in `src/data/services.ts` and feeds cards, detail page, footer links and the contact form's options.
+- Contact form submissions are validated by `src/lib/contact-schema.ts` (shared client/server) and inserted by a public server function into `contact_submissions` (anon insert-only RLS, no public reads).
+- Each content section has its own route file with its own head() metadata; shared section components live in `src/components/site/`.
